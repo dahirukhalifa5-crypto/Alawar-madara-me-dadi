@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kayan Kaya – Price List</title>
+  <meta name="description" content="Simple, mobile-friendly price list for local fabrics and snacks." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f172a;
+      --card: #111827;
+      --muted: #9ca3af;
+      --fg: #f8fafc;
+      --accent: #16a34a;
+      --ring: rgba(34,197,94,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1e293b 0%, transparent 60%),
+                  radial-gradient(800px 400px at 110% 10%, #052e16 0%, transparent 50%),
+                  var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: rgba(15, 23, 42, .65);
+      border-bottom: 1px solid rgba(148,163,184,.12);
+    }
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem clamp(1rem, 4vw, 2rem);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .brand .logo {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      display: grid; place-items: center;
+      box-shadow: 0 10px 20px rgba(34,197,94,.25), inset 0 0 0 1px rgba(255,255,255,.15);
+      font-weight: 800;
+    }
+    .brand h1 {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      margin: 0;
+      letter-spacing: .2px;
+    }
+    .sub {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-top: .25rem;
+    }
+    .toolbar {
+      margin-top: .75rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .75rem;
+    }
+    .search, select, button {
+      font: inherit;
+      background: rgba(17,24,39,.7);
+      color: var(--fg);
+      border: 1px solid rgba(148,163,184,.18);
+      border-radius: 10px;
+      padding: .7rem .9rem;
+      outline: none;
+    }
+    .search:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    main {
+      padding: 1.25rem clamp(1rem, 4vw, 2rem) 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    @media (min-width: 600px){
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 900px){
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+      border: 1px solid rgba(148,163,184,.15);
+      border-radius: 16px;
+      padding: 1rem;
+      display: grid;
+      gap: .75rem;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.25);
+      border-color: rgba(148,163,184,.28);
+    }
+    .title {
+      display: flex; align-items: baseline; justify-content: space-between; gap: .75rem;
+    }
+    .title h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    .badge {
+      font-size: .75rem;
+      padding: .25rem .5rem;
+      border-radius: 999px;
+      background: rgba(34,197,94,.15);
+      border: 1px solid rgba(34,197,94,.4);
+      color: #bbf7d0;
+      white-space: nowrap;
+    }
+    .price {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+    .unit {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .actions {
+      display: flex; gap: .5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      gap: .5rem;
+      padding: .55rem .8rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,.2);
+      background: #0b1220;
+      color: var(--fg);
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, transform .05s ease-in-out;
+      text-decoration: none;
+    }
+    .btn:hover { background: #0d1527; border-color: rgba(148,163,184,.35); }
+    .btn:active { transform: translateY(1px); }
+    footer {
+      border-top: 1px solid rgba(148,163,184,.12);
+      color: var(--muted);
+      padding: 1rem clamp(1rem, 4vw, 2rem) 2rem;
+      text-align: center;
+    }
+    .sr-only { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand" role="banner" aria-label="Store brand">
+        <div class="logo" aria-hidden="true">₦</div>
+        <div>
+          <h1>Kayan Kaya — Price List</h1>
+          <div class="sub">Local fabrics & snacks (Nigeria)</div>
+        </div>
+      </div>
+      <div class="toolbar" role="search">
+        <input class="search" id="search" placeholder="Search items… (e.g., shadda)" aria-label="Search products" />
+        <select id="sort" aria-label="Sort products">
+          <option value="name-asc">Sort: Name A–Z</option>
+          <option value="name-desc">Sort: Name Z–A</option>
+          <option value="price-asc">Sort: Price Low → High</option>
+          <option value="price-desc">Sort: Price High → Low</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-labelledby="list-heading">
+      <h2 id="list-heading" class="sr-only">Product list</h2>
+      <div id="grid" class="grid">
+        <!-- Cards will be injected by JS -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Built with ❤️ for a clean, mobile-first experience. Prices in Nigerian Naira (₦).</small>
+  </footer>
+
+  <script>
+    // Product data
+    const products = [
+      { name: "Alawar madara", price: 500, unit: "per pack", tag: "Snack" },
+      { name: "yar Gulisuwa", price: 100, unit: "per pack", tag: "Snack" },
+      { name: "shadda", price: 4000, unit: "per yard", tag: "Fabric" },
+      { name: "Attampa", price: 2000, unit: "per tirmi", tag: "Fabric" }
+    ];
+
+    const grid = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const sort = document.getElementById('sort');
+
+    function formatNaira(n){
+      return new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(n);
+    }
+
+    function cardTemplate(item){
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.setAttribute('data-name', item.name.toLowerCase());
+      el.setAttribute('data-price', item.price);
+
+      el.innerHTML = `
+        <div class="title">
+          <h2>${item.name}</h2>
+          <span class="badge">${item.tag}</span>
+        </div>
+        <div class="price" aria-label="Price">${formatNaira(item.price)}</div>
+        <div class="unit">${item.unit}</div>
+        <div class="actions">
+          <button class="btn" aria-label="Copy price">Copy price</button>
+          <button class="btn" aria-label="Share item">Share</button>
+        </div>
+      `;
+
+      const [copyBtn, shareBtn] = el.querySelectorAll('.btn');
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(`${item.name}: ${formatNaira(item.price)} ${item.unit}`);
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy price', 1200);
+        } catch (e) {}
+      });
+      shareBtn.addEventListener('click', async () => {
+        const text = `${item.name} — ${formatNaira(item.price)} (${item.unit})`;
+        const url = location.href;
+        if (navigator.share) {
+          try { await navigator.share({ title: item.name, text, url }); } catch(e){}
+        } else {
+          try { await navigator.clipboard.writeText(text + " " + url); } catch(e){}
+          shareBtn.textContent = 'Link copied!';
+          setTimeout(() => shareBtn.textContent = 'Share', 1200);
+        }
+      });
+
+      return el;
+    }
+
+    function render(list){
+      grid.innerHTML = '';
+      list.forEach(p => grid.appendChild(cardTemplate(p)));
+    }
+
+    function applySearchAndSort(){
+      const q = (search.value || '').toLowerCase().trim();
+      let filtered = products.filter(p => p.name.toLowerCase().includes(q));
+
+      const mode = sort.value;
+      if (mode === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
+      if (mode === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
+      if (mode === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+      if (mode === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+
+      render(filtered);
+    }
+
+    search.addEventListener('input', applySearchAndSort);
+    sort.addEventListener('change', applySearchAndSort);
+
+    // Initial render
+    render(products);
+  </script>
+</body>
+</html>
